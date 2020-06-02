@@ -2,7 +2,7 @@
 #define LinkedList_H
 
 #include <iostream>
-
+#include <assert.h>
 /* define linkedList node */
 template <typename T>
 struct node
@@ -49,8 +49,16 @@ void LinkedList<T>::push_back(T newData)
 }
 
 template <typename T>
+node<T> *LinkedList<T>::get(int idx)
+{
+  assert(idx < len_ && "given index bigger than length of list!");
+  return head_;
+}
+
+template <typename T>
 LinkedList<T>::~LinkedList()
 {
+  /** delete all allocated nodes **/
   if (head_ != nullptr)
   {
     node<T> *temp = head_;
