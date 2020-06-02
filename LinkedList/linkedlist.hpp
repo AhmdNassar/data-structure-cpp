@@ -46,15 +46,43 @@ void LinkedList<T>::push_back(T newData)
       temp1 = temp1->next;
     temp1->next = temp;
   }
+  len_++;
 }
 
 template <typename T>
 node<T> *LinkedList<T>::get(int idx)
 {
   assert(idx < len_ && "given index bigger than length of list!");
-  return head_;
+  node<T>* temp = head_;
+  for(int i=1; i<=idx; i++)
+    temp = temp->next;
+  return temp;
 }
 
+template <typename T>
+void LinkedList<T>::insert(T newData, int idx)
+{
+  assert(idx < len_ && "given index bigger than length of list!");
+  node<T> *newNode = new node<T>();
+  newNode->data = newData;
+
+  if (head_ == nullptr && idx == 0)
+    head_ = newNode;
+  else
+  {
+    node<T> *tempParent, *tempChild;
+    tempParent = head_;
+    for (int i = 1; i < idx; i++)
+    {
+      // if we want to insert node at idx = 5, we get parent of node 5 which is 4
+      tempParent = tempParent->next;
+    }
+    tempChild = tempParent->next;
+    tempParent->next = newNode;
+    newNode->next = tempChild;
+  }
+  len_++;
+}
 template <typename T>
 LinkedList<T>::~LinkedList()
 {
