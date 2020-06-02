@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <assert.h>
+
 /* define linkedList node */
 template <typename T>
 struct node
@@ -53,8 +54,8 @@ template <typename T>
 node<T> *LinkedList<T>::get(int idx)
 {
   assert(idx < len_ && "given index bigger than length of list!");
-  node<T>* temp = head_;
-  for(int i=1; i<=idx; i++)
+  node<T> *temp = head_;
+  for (int i = 1; i <= idx; i++)
     temp = temp->next;
   return temp;
 }
